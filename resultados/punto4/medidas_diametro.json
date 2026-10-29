@@ -1,0 +1,224 @@
+[
+  {
+    "banda": "optico DSS2 red",
+    "umbral_sigma": 2.0,
+    "D_equiv_deg": 4.677,
+    "D_equiv_arcmin": 280.6,
+    "eje_mayor_deg": 5.535,
+    "eje_menor_deg": 3.995,
+    "D_fisico_kpc": 4.08,
+    "toca_borde": false,
+    "fraccion_imagen": 0.043,
+    "region": "region containing the image centre",
+    "avisos": [
+      "Image comes from the SkyView DSS mosaic, whose photographic plates have unmatched backgrounds: the threshold can follow a plate edge instead of the object. Check the diagnostic PNG; prefer the CDS HiPS (hips2fits)."
+    ],
+    "png": "/home/sebasvelace/Aladinmcp/resultados/punto4/medida_LMC_optico_DSS2red_20deg_umbral2.png"
+  },
+  {
+    "banda": "optico DSS2 red",
+    "umbral_sigma": 3.0,
+    "D_equiv_deg": 2.824,
+    "D_equiv_arcmin": 169.5,
+    "eje_mayor_deg": 5.378,
+    "eje_menor_deg": 1.996,
+    "D_fisico_kpc": 2.46,
+    "toca_borde": false,
+    "fraccion_imagen": 0.016,
+    "region": "region containing the image centre",
+    "avisos": [
+      "Image comes from the SkyView DSS mosaic, whose photographic plates have unmatched backgrounds: the threshold can follow a plate edge instead of the object. Check the diagnostic PNG; prefer the CDS HiPS (hips2fits)."
+    ],
+    "png": "/home/sebasvelace/Aladinmcp/resultados/punto4/medida_LMC_optico_DSS2red_20deg_umbral3.png"
+  },
+  {
+    "banda": "optico DSS2 red",
+    "umbral_sigma": 5.0,
+    "D_equiv_deg": 0.598,
+    "D_equiv_arcmin": 35.9,
+    "eje_mayor_deg": 0.868,
+    "eje_menor_deg": 0.422,
+    "D_fisico_kpc": 0.52,
+    "toca_borde": false,
+    "fraccion_imagen": 0.001,
+    "region": "largest region (the centre was below the threshold)",
+    "avisos": [
+      "Image comes from the SkyView DSS mosaic, whose photographic plates have unmatched backgrounds: the threshold can follow a plate edge instead of the object. Check the diagnostic PNG; prefer the CDS HiPS (hips2fits)."
+    ],
+    "png": "/home/sebasvelace/Aladinmcp/resultados/punto4/medida_LMC_optico_DSS2red_20deg_umbral5.png"
+  },
+  {
+    "banda": "infrarrojo AKARI 140 um",
+    "umbral_sigma": 2.0,
+    "D_equiv_deg": 6.505,
+    "D_equiv_arcmin": 390.3,
+    "eje_mayor_deg": 7.324,
+    "eje_menor_deg": 6.001,
+    "D_fisico_kpc": 5.68,
+    "toca_borde": false,
+    "fraccion_imagen": 0.083,
+    "region": "region containing the image centre",
+    "avisos": null,
+    "png": "/home/sebasvelace/Aladinmcp/resultados/punto4/medida_LMC_infrarrojo_AKARI140um_20deg_umbral2.png"
+  },
+  {
+    "banda": "infrarrojo AKARI 140 um",
+    "umbral_sigma": 3.0,
+    "D_equiv_deg": 5.982,
+    "D_equiv_arcmin": 358.9,
+    "eje_mayor_deg": 6.977,
+    "eje_menor_deg": 5.511,
+    "D_fisico_kpc": 5.22,
+    "toca_borde": false,
+    "fraccion_imagen": 0.07,
+    "region": "region containing the image centre",
+    "avisos": null,
+    "png": "/home/sebasvelace/Aladinmcp/resultados/punto4/medida_LMC_infrarrojo_AKARI140um_20deg_umbral3.png"
+  },
+  {
+    "banda": "infrarrojo AKARI 140 um",
+    "umbral_sigma": 5.0,
+    "D_equiv_deg": 4.924,
+    "D_equiv_arcmin": 295.4,
+    "eje_mayor_deg": 6.043,
+    "eje_menor_deg": 4.6,
+    "D_fisico_kpc": 4.3,
+    "toca_borde": false,
+    "fraccion_imagen": 0.048,
+    "region": "region containing the image centre",
+    "avisos": null,
+    "png": "/home/sebasvelace/Aladinmcp/resultados/punto4/medida_LMC_infrarrojo_AKARI140um_20deg_umbral5.png"
+  },
+  {
+    "banda": "radio/submm Planck 857 GHz",
+    "umbral_sigma": 2.0,
+    "D_equiv_deg": 5.595,
+    "D_equiv_arcmin": 335.7,
+    "eje_mayor_deg": 6.877,
+    "eje_menor_deg": 5.361,
+    "D_fisico_kpc": 4.88,
+    "toca_borde": false,
+    "fraccion_imagen": 0.061,
+    "region": "region containing the image centre",
+    "avisos": null,
+    "png": "/home/sebasvelace/Aladinmcp/resultados/punto4/medida_LMC_radio_Planck857GHz_20deg_umbral2.png"
+  },
+  {
+    "banda": "radio/submm Planck 857 GHz",
+    "umbral_sigma": 3.0,
+    "D_equiv_deg": 4.506,
+    "D_equiv_arcmin": 270.4,
+    "eje_mayor_deg": 6.139,
+    "eje_menor_deg": 4.542,
+    "D_fisico_kpc": 3.93,
+    "toca_borde": false,
+    "fraccion_imagen": 0.04,
+    "region": "region containing the image centre",
+    "avisos": null,
+    "png": "/home/sebasvelace/Aladinmcp/resultados/punto4/medida_LMC_radio_Planck857GHz_20deg_umbral3.png"
+  },
+  {
+    "banda": "radio/submm Planck 857 GHz",
+    "umbral_sigma": 5.0,
+    "D_equiv_deg": 3.089,
+    "D_equiv_arcmin": 185.3,
+    "eje_mayor_deg": 4.454,
+    "eje_menor_deg": 2.92,
+    "D_fisico_kpc": 2.7,
+    "toca_borde": false,
+    "fraccion_imagen": 0.019,
+    "region": "region containing the image centre",
+    "avisos": null,
+    "png": "/home/sebasvelace/Aladinmcp/resultados/punto4/medida_LMC_radio_Planck857GHz_20deg_umbral5.png"
+  },
+  {
+    "banda": "gamma Fermi 3-300 GeV",
+    "umbral_sigma": 2.0,
+    "D_equiv_deg": 4.327,
+    "D_equiv_arcmin": 259.6,
+    "eje_mayor_deg": 5.75,
+    "eje_menor_deg": 4.533,
+    "D_fisico_kpc": 3.78,
+    "toca_borde": false,
+    "fraccion_imagen": 0.037,
+    "region": "region containing the image centre",
+    "avisos": null,
+    "png": "/home/sebasvelace/Aladinmcp/resultados/punto4/medida_LMC_gamma_Fermi3-300GeV_20deg_umbral2.png"
+  },
+  {
+    "banda": "gamma Fermi 3-300 GeV",
+    "umbral_sigma": 3.0,
+    "D_equiv_deg": 3.347,
+    "D_equiv_arcmin": 200.8,
+    "eje_mayor_deg": 5.084,
+    "eje_menor_deg": 2.537,
+    "D_fisico_kpc": 2.92,
+    "toca_borde": false,
+    "fraccion_imagen": 0.022,
+    "region": "region containing the image centre",
+    "avisos": null,
+    "png": "/home/sebasvelace/Aladinmcp/resultados/punto4/medida_LMC_gamma_Fermi3-300GeV_20deg_umbral3.png"
+  },
+  {
+    "banda": "gamma Fermi 3-300 GeV",
+    "umbral_sigma": 5.0,
+    "D_equiv_deg": 1.927,
+    "D_equiv_arcmin": 115.6,
+    "eje_mayor_deg": 2.368,
+    "eje_menor_deg": 1.732,
+    "D_fisico_kpc": 1.68,
+    "toca_borde": false,
+    "fraccion_imagen": 0.007,
+    "region": "region containing the image centre",
+    "avisos": null,
+    "png": "/home/sebasvelace/Aladinmcp/resultados/punto4/medida_LMC_gamma_Fermi3-300GeV_20deg_umbral5.png"
+  },
+  {
+    "banda": "30 Dor (optico DSS2 red)",
+    "umbral_sigma": 2.0,
+    "D_equiv_deg": 0.263,
+    "D_equiv_arcmin": 15.8,
+    "eje_mayor_deg": 0.297,
+    "eje_menor_deg": 0.239,
+    "D_fisico_kpc": 0.23,
+    "toca_borde": false,
+    "fraccion_imagen": 0.024,
+    "region": "region containing the image centre",
+    "avisos": [
+      "Image comes from the SkyView DSS mosaic, whose photographic plates have unmatched backgrounds: the threshold can follow a plate edge instead of the object. Check the diagnostic PNG; prefer the CDS HiPS (hips2fits)."
+    ],
+    "png": "/home/sebasvelace/Aladinmcp/resultados/punto4/medida_30Dor_optico_DSS2red_1.5deg_umbral2.png"
+  },
+  {
+    "banda": "30 Dor (optico DSS2 red)",
+    "umbral_sigma": 3.0,
+    "D_equiv_deg": 0.228,
+    "D_equiv_arcmin": 13.7,
+    "eje_mayor_deg": 0.258,
+    "eje_menor_deg": 0.206,
+    "D_fisico_kpc": 0.2,
+    "toca_borde": false,
+    "fraccion_imagen": 0.018,
+    "region": "region containing the image centre",
+    "avisos": [
+      "Image comes from the SkyView DSS mosaic, whose photographic plates have unmatched backgrounds: the threshold can follow a plate edge instead of the object. Check the diagnostic PNG; prefer the CDS HiPS (hips2fits)."
+    ],
+    "png": "/home/sebasvelace/Aladinmcp/resultados/punto4/medida_30Dor_optico_DSS2red_1.5deg_umbral3.png"
+  },
+  {
+    "banda": "30 Dor (optico DSS2 red)",
+    "umbral_sigma": 5.0,
+    "D_equiv_deg": 0.15,
+    "D_equiv_arcmin": 9.0,
+    "eje_mayor_deg": 0.172,
+    "eje_menor_deg": 0.141,
+    "D_fisico_kpc": 0.13,
+    "toca_borde": false,
+    "fraccion_imagen": 0.008,
+    "region": "region containing the image centre",
+    "avisos": [
+      "Image comes from the SkyView DSS mosaic, whose photographic plates have unmatched backgrounds: the threshold can follow a plate edge instead of the object. Check the diagnostic PNG; prefer the CDS HiPS (hips2fits)."
+    ],
+    "png": "/home/sebasvelace/Aladinmcp/resultados/punto4/medida_30Dor_optico_DSS2red_1.5deg_umbral5.png"
+  }
+]

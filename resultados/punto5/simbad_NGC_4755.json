@@ -1,0 +1,74 @@
+{
+  "nombre_principal": "NGC  4755",
+  "ra_deg": 193.415,
+  "dec_deg": -60.371111,
+  "ra_hms": "12:53:39.60",
+  "dec_dms": "-60:22:16.0",
+  "tipo_objeto": {
+    "codigo": "OpC",
+    "descripcion": "Open Cluster"
+  },
+  "tipo_espectral": null,
+  "magnitudes": {},
+  "paralaje_mas": 0.462,
+  "paralaje_error_mas": 0.002,
+  "distancia_desde_paralaje_pc": 2164.5,
+  "nota_paralaje": "1/parallax is a naive estimate (ignores the Gaia zero-point and inversion bias); prefer the published distances below.",
+  "mediciones_distancia": [
+    {
+      "valor": 1887.0,
+      "unidad": "pc",
+      "err_menos": -68.0,
+      "err_mas": 68.0,
+      "metodo": "paral",
+      "referencia": "2021MNRAS.504..356D"
+    },
+    {
+      "valor": 1992.0,
+      "unidad": "pc",
+      "err_menos": null,
+      "err_mas": null,
+      "metodo": "paral",
+      "referencia": "2021A&A...651A.104P"
+    },
+    {
+      "valor": 1971.0,
+      "unidad": "pc",
+      "err_menos": null,
+      "err_mas": null,
+      "metodo": null,
+      "referencia": "2018MNRAS.473..849D"
+    },
+    {
+      "valor": 1978.0,
+      "unidad": "pc",
+      "err_menos": null,
+      "err_mas": null,
+      "metodo": null,
+      "referencia": "2017AstBu..72..257L"
+    },
+    {
+      "valor": 3435.579,
+      "unidad": "pc",
+      "err_menos": null,
+      "err_mas": null,
+      "metodo": "ST-L",
+      "referencia": "2010MNRAS.403.1491P"
+    },
+    {
+      "valor": 1976.0,
+      "unidad": "pc",
+      "err_menos": null,
+      "err_mas": null,
+      "metodo": "ST-L",
+      "referencia": "2005A&A...438.1163K"
+    }
+  ],
+  "tamano_angular": {
+    "eje_mayor_arcmin": 10.3,
+    "eje_menor_arcmin": 10.3,
+    "angulo_posicion_deg": 0
+  },
+  "servidor": "simbad.harvard.edu",
+  "nota_magnitudes": "SIMBAD has no integrated magnitudes for this object."
+}

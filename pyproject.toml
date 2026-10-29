@@ -1,0 +1,25 @@
+[project]
+name = "aladin-mcp"
+version = "0.1.0"
+description = "MCP server for the Aladin / CDS ecosystem (SIMBAD, VizieR, HiPS, SAMP)"
+requires-python = ">=3.10"
+dependencies = [
+    "mcp[cli]>=2.3",
+    "astroquery>=0.4.11",
+    "astropy>=8.0",
+    "numpy",
+    "matplotlib",
+    "pandas",
+    "scipy",
+    "requests",
+]
+
+[project.scripts]
+aladin-mcp = "aladin_mcp.server:main"
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = ["aladin_mcp"]

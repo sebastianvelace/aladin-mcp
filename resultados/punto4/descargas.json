@@ -1,0 +1,97 @@
+{
+  "LMC_optico_DSS2red_20deg": {
+    "fits": "/home/sebasvelace/Aladinmcp/resultados/punto4/LMC_optico_DSS2red_20deg.fits",
+    "png": "/home/sebasvelace/Aladinmcp/resultados/punto4/LMC_optico_DSS2red_20deg.png",
+    "fuente": "NASA SkyView fallback, survey='DSS2 Red' (hips2fits failed)",
+    "centro": {
+      "ra_deg": 80.894167,
+      "dec_deg": -69.756111,
+      "resuelto_por": "coordinates"
+    },
+    "fov_deg": 20,
+    "pixeles": [
+      800,
+      800
+    ],
+    "escala_arcsec_por_pixel": 90.0,
+    "avisos": [
+      "hips2fits: no mirror answered.\n- https://alasky.cds.unistra.fr/hips-image-services/hips2fits: timeout (no response)\n- https://alaskybis.cds.unistra.fr/hips-image-services/hips2fits: timeout (no response)\nThe CDS services may be down or slow, or your network may be blocking them. Try again in a few minutes or raise ALADIN_MCP_TIMEOUT."
+    ]
+  },
+  "LMC_infrarrojo_AKARI140um_20deg": {
+    "fits": "/home/sebasvelace/Aladinmcp/resultados/punto4/LMC_infrarrojo_AKARI140um_20deg.fits",
+    "png": "/home/sebasvelace/Aladinmcp/resultados/punto4/LMC_infrarrojo_AKARI140um_20deg.png",
+    "fuente": "NASA SkyView fallback, survey='AKARI WIDE-L' (hips2fits failed)",
+    "centro": {
+      "ra_deg": 80.894167,
+      "dec_deg": -69.756111,
+      "resuelto_por": "coordinates"
+    },
+    "fov_deg": 20,
+    "pixeles": [
+      600,
+      600
+    ],
+    "escala_arcsec_por_pixel": 120.0,
+    "avisos": [
+      "hips2fits: no mirror answered.\n- https://alasky.cds.unistra.fr/hips-image-services/hips2fits: timeout (no response)\n- https://alaskybis.cds.unistra.fr/hips-image-services/hips2fits: timeout (no response)\nThe CDS services may be down or slow, or your network may be blocking them. Try again in a few minutes or raise ALADIN_MCP_TIMEOUT."
+    ]
+  },
+  "LMC_radio_Planck857GHz_20deg": {
+    "fits": "/home/sebasvelace/Aladinmcp/resultados/punto4/LMC_radio_Planck857GHz_20deg.fits",
+    "png": "/home/sebasvelace/Aladinmcp/resultados/punto4/LMC_radio_Planck857GHz_20deg.png",
+    "fuente": "NASA SkyView fallback, survey='Planck 857 I' (hips2fits failed)",
+    "centro": {
+      "ra_deg": 80.894167,
+      "dec_deg": -69.756111,
+      "resuelto_por": "coordinates"
+    },
+    "fov_deg": 20,
+    "pixeles": [
+      600,
+      600
+    ],
+    "escala_arcsec_por_pixel": 120.0,
+    "avisos": [
+      "hips2fits: no mirror answered.\n- https://alasky.cds.unistra.fr/hips-image-services/hips2fits: timeout (no response)\n- https://alaskybis.cds.unistra.fr/hips-image-services/hips2fits: timeout (no response)\nThe CDS services may be down or slow, or your network may be blocking them. Try again in a few minutes or raise ALADIN_MCP_TIMEOUT."
+    ]
+  },
+  "LMC_gamma_Fermi3-300GeV_20deg": {
+    "fits": "/home/sebasvelace/Aladinmcp/resultados/punto4/LMC_gamma_Fermi3-300GeV_20deg.fits",
+    "png": "/home/sebasvelace/Aladinmcp/resultados/punto4/LMC_gamma_Fermi3-300GeV_20deg.png",
+    "fuente": "NASA SkyView fallback, survey='Fermi 5' (hips2fits failed)",
+    "centro": {
+      "ra_deg": 80.894167,
+      "dec_deg": -69.756111,
+      "resuelto_por": "coordinates"
+    },
+    "fov_deg": 20,
+    "pixeles": [
+      400,
+      400
+    ],
+    "escala_arcsec_por_pixel": 180.0,
+    "avisos": [
+      "hips2fits: no mirror answered.\n- https://alasky.cds.unistra.fr/hips-image-services/hips2fits: timeout (no response)\n- https://alaskybis.cds.unistra.fr/hips-image-services/hips2fits: timeout (no response)\nThe CDS services may be down or slow, or your network may be blocking them. Try again in a few minutes or raise ALADIN_MCP_TIMEOUT."
+    ]
+  },
+  "30Dor_optico_DSS2red_1.5deg": {
+    "fits": "/home/sebasvelace/Aladinmcp/resultados/punto4/30Dor_optico_DSS2red_1.5deg.fits",
+    "png": "/home/sebasvelace/Aladinmcp/resultados/punto4/30Dor_optico_DSS2red_1.5deg.png",
+    "fuente": "NASA SkyView fallback, survey='DSS2 Red' (hips2fits failed)",
+    "centro": {
+      "ra_deg": 84.67665,
+      "dec_deg": -69.100933,
+      "resuelto_por": "SIMBAD: RMC 136"
+    },
+    "fov_deg": 1.5,
+    "pixeles": [
+      600,
+      600
+    ],
+    "escala_arcsec_por_pixel": 9.0,
+    "avisos": [
+      "hips2fits: no mirror answered.\n- https://alasky.cds.unistra.fr/hips-image-services/hips2fits: timeout (no response)\n- https://alaskybis.cds.unistra.fr/hips-image-services/hips2fits: timeout (no response)\nThe CDS services may be down or slow, or your network may be blocking them. Try again in a few minutes or raise ALADIN_MCP_TIMEOUT."
+    ]
+  }
+}

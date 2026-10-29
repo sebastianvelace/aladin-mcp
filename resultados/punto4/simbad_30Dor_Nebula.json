@@ -1,0 +1,25 @@
+{
+  "nombre_principal": "NAME 30 Dor Nebula",
+  "ra_deg": 84.65,
+  "dec_deg": -69.086389,
+  "ra_hms": "05:38:36.00",
+  "dec_dms": "-69:05:11.0",
+  "tipo_objeto": {
+    "codigo": "SFR",
+    "descripcion": "Star Forming Region"
+  },
+  "tipo_espectral": null,
+  "magnitudes": {},
+  "paralaje_mas": null,
+  "paralaje_error_mas": null,
+  "distancia_desde_paralaje_pc": null,
+  "nota_paralaje": null,
+  "mediciones_distancia": [],
+  "tamano_angular": {
+    "eje_mayor_arcmin": 40.0,
+    "eje_menor_arcmin": 25.0,
+    "angulo_posicion_deg": -1
+  },
+  "servidor": "simbad.harvard.edu",
+  "nota_magnitudes": "SIMBAD has no integrated magnitudes for this object."
+}

@@ -1,0 +1,29 @@
+{
+  "nombre_principal": "RMC 136",
+  "ra_deg": 84.67665,
+  "dec_deg": -69.100933,
+  "ra_hms": "05:38:42.40",
+  "dec_dms": "-69:06:03.4",
+  "tipo_objeto": {
+    "codigo": "Cl*",
+    "descripcion": "Cluster of Stars"
+  },
+  "tipo_espectral": null,
+  "magnitudes": {
+    "B": {
+      "mag": 5.81,
+      "error": null
+    },
+    "V": {
+      "mag": 5.4,
+      "error": null
+    }
+  },
+  "paralaje_mas": null,
+  "paralaje_error_mas": null,
+  "distancia_desde_paralaje_pc": null,
+  "nota_paralaje": null,
+  "mediciones_distancia": [],
+  "tamano_angular": null,
+  "servidor": "simbad.harvard.edu"
+}

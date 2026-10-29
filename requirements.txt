@@ -1,0 +1,8 @@
+mcp[cli]>=2.3
+astroquery>=0.4.11
+astropy>=8.0
+numpy
+matplotlib
+pandas
+scipy
+requests

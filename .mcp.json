@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "aladin": {
+      "type": "stdio",
+      "command": "/home/sebasvelace/Aladinmcp/.venv/bin/python",
+      "args": [
+        "-m",
+        "aladin_mcp.server"
+      ],
+      "env": {}
+    }
+  }
+}

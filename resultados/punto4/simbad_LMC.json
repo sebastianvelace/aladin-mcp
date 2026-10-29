@@ -1,0 +1,94 @@
+{
+  "nombre_principal": "NAME LMC",
+  "ra_deg": 80.894167,
+  "dec_deg": -69.756111,
+  "ra_hms": "05:23:34.60",
+  "dec_dms": "-69:45:22.0",
+  "tipo_objeto": {
+    "codigo": "G",
+    "descripcion": "Galaxy"
+  },
+  "tipo_espectral": null,
+  "magnitudes": {
+    "V": {
+      "mag": 0.4,
+      "error": 0.1
+    }
+  },
+  "paralaje_mas": null,
+  "paralaje_error_mas": null,
+  "distancia_desde_paralaje_pc": null,
+  "nota_paralaje": null,
+  "mediciones_distancia": [
+    {
+      "valor": 50.0,
+      "unidad": "kpc",
+      "err_menos": null,
+      "err_mas": null,
+      "metodo": null,
+      "referencia": "2020ApJ...893...47D"
+    },
+    {
+      "valor": 0.05,
+      "unidad": "Mpc",
+      "err_menos": null,
+      "err_mas": null,
+      "metodo": "redshift",
+      "referencia": "2018MNRAS.479.4136K"
+    },
+    {
+      "valor": 0.05,
+      "unidad": "Mpc",
+      "err_menos": null,
+      "err_mas": null,
+      "metodo": null,
+      "referencia": "2016AJ....152...50T"
+    },
+    {
+      "valor": 0.05,
+      "unidad": "Mpc",
+      "err_menos": -0.06,
+      "err_mas": 0.06,
+      "metodo": null,
+      "referencia": "2013AJ....146...86T"
+    },
+    {
+      "valor": 0.05,
+      "unidad": "Mpc",
+      "err_menos": null,
+      "err_mas": null,
+      "metodo": "T-F",
+      "referencia": "2011ApJS..192....6L"
+    },
+    {
+      "valor": 50.12,
+      "unidad": "kpc",
+      "err_menos": null,
+      "err_mas": null,
+      "metodo": "Cep",
+      "referencia": "2010ApJ...715..277B"
+    },
+    {
+      "valor": 0.05,
+      "unidad": "Mpc",
+      "err_menos": null,
+      "err_mas": null,
+      "metodo": "Cep",
+      "referencia": "2008ApJ...676..184T"
+    },
+    {
+      "valor": 50.0,
+      "unidad": "kpc",
+      "err_menos": null,
+      "err_mas": null,
+      "metodo": null,
+      "referencia": "1999PASP..111..775F"
+    }
+  ],
+  "tamano_angular": {
+    "eje_mayor_arcmin": 322.82666,
+    "eje_menor_arcmin": 274.769989,
+    "angulo_posicion_deg": 170
+  },
+  "servidor": "simbad.harvard.edu"
+}

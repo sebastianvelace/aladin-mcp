@@ -1,0 +1,8 @@
+.venv/
+.cache/
+.config/
+output/
+__pycache__/
+*.pyc
+*.egg-info/
+.atl/
