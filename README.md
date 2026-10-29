@@ -291,6 +291,18 @@ tests/          # tests sin red (funcionan aunque el CDS esté caído)
 resultados/     # resultados del taller (puntos 4 y 5) y sus scripts
 ```
 
+## Informe del taller en LaTeX
+
+`latex/taller_magnitudes.tex` redacta los puntos 1 a 5 del taller con las tablas y figuras de
+`resultados/`; `latex/taller_magnitudes.pdf` es la versión compilada. Para recompilarlo con
+[Tectonic](https://tectonic-typesetting.github.io/):
+
+```bash
+cd latex && tectonic taller_magnitudes.tex
+```
+
+Antes de entregarlo, reemplace el nombre del estudiante en la macro `\autor` al comienzo del archivo.
+
 ## Tests
 
 ```bash
