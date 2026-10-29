@@ -52,12 +52,22 @@ chart.style = 13
 chart.x_axis.title = "Índice de color B − V (mag)"
 chart.y_axis.title = "Magnitud visual aparente V (mag)"
 chart.y_axis.scaling.orientation = "maxMin"  # brighter stars at the top
+# With the V axis reversed its maximum is at the bottom; cross there so the B-V axis stays below.
+chart.x_axis.crosses = "max"
+chart.y_axis.crosses = "min"  # keep the V axis at the left edge, not at B-V = 0 inside the data
+chart.x_axis.scaling.min, chart.x_axis.scaling.max = -1.0, 3.0
+chart.x_axis.majorUnit = 0.5
+chart.y_axis.scaling.min, chart.y_axis.scaling.max = 9, 20
 chart.x_axis.delete = False
 chart.y_axis.delete = False
+chart.legend = None
 series = Series(Reference(ws, min_col=5, min_row=2, max_row=n),
                 Reference(ws, min_col=6, min_row=2, max_row=n), title="estrellas")
 series.marker.symbol = "circle"
 series.marker.size = 3
+# Without an explicit fill some readers (LibreOffice) draw the markers white on white.
+series.marker.graphicalProperties.solidFill = "1F4FBF"
+series.marker.graphicalProperties.line.solidFill = "1F4FBF"
 series.graphicalProperties.line.noFill = True
 chart.series.append(series)
 chart.height, chart.width = 15, 20

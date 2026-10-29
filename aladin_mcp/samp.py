@@ -40,11 +40,17 @@ def send(commands: str, timeout_s: int = 20) -> dict:
         message = {"samp.mtype": MTYPE, "samp.params": {"script": commands}}
         replies = []
         for client_id in targets:
-            name = client.get_metadata(client_id).get("samp.name", client_id)
             try:
+                name = client.get_metadata(client_id).get("samp.name", client_id)
                 reply = client.call_and_wait(client_id, message, str(timeout_s))
-            except Exception as exc:  # SAMPProxyError on timeout
-                if "timeout" not in str(exc).lower():
+            except Exception as exc:  # SAMPProxyError
+                text = str(exc).lower()
+                if "no longer registered" in text:
+                    # The client left the hub after it was listed (e.g. an Aladin window closed).
+                    replies.append({"destinatario": client_id, "confirmado": False,
+                                    "mensaje": "This client left the SAMP hub; skipped."})
+                    continue
+                if "timeout" not in text:
                     raise
                 replies.append({"destinatario": name, "confirmado": False,
                                 "mensaje": NO_REPLY.format(timeout=timeout_s)})

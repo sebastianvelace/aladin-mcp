@@ -1,0 +1,202 @@
+[
+  {
+    "clave": "optico",
+    "banda": "Óptico (Mellinger)",
+    "unidad": "grados",
+    "eje_mayor_contraste5": 13.1,
+    "eje_mayor_contraste10": 11.33,
+    "eje_mayor_contraste20": 7.53,
+    "eje_mayor": 11.33,
+    "extremos_mayor": [
+      [
+        70.43865,
+        -65.54029
+      ],
+      [
+        95.04931,
+        -72.94655
+      ]
+    ],
+    "eje_menor_contraste5": 10.17,
+    "eje_menor_contraste10": 8.27,
+    "eje_menor_contraste20": 6.1,
+    "eje_menor": 8.27,
+    "extremos_menor": [
+      [
+        87.51092,
+        -66.68531
+      ],
+      [
+        71.14397,
+        -72.75095
+      ]
+    ]
+  },
+  {
+    "clave": "akari",
+    "banda": "Infrarrojo (AKARI 140 µm)",
+    "unidad": "grados",
+    "eje_mayor_contraste5": 6.73,
+    "eje_mayor_contraste10": 6.43,
+    "eje_mayor_contraste20": 5.2,
+    "eje_mayor": 6.43,
+    "extremos_mayor": [
+      [
+        71.69885,
+        -67.35251
+      ],
+      [
+        86.89643,
+        -70.85071
+      ]
+    ],
+    "eje_menor_contraste5": 6.37,
+    "eje_menor_contraste10": 4.8,
+    "eje_menor_contraste20": 3.23,
+    "eje_menor": 4.8,
+    "extremos_menor": [
+      [
+        86.0741,
+        -66.22466
+      ],
+      [
+        79.70909,
+        -70.40785
+      ]
+    ]
+  },
+  {
+    "clave": "planck857",
+    "banda": "Submilimétrico (Planck 857 GHz)",
+    "unidad": "grados",
+    "eje_mayor_contraste5": 6.83,
+    "eje_mayor_contraste10": 6.53,
+    "eje_mayor_contraste20": 3.27,
+    "eje_mayor": 6.53,
+    "extremos_mayor": [
+      [
+        84.77796,
+        -65.89696
+      ],
+      [
+        77.91811,
+        -71.94781
+      ]
+    ],
+    "eje_menor_contraste5": 6.43,
+    "eje_menor_contraste10": 4.03,
+    "eje_menor_contraste20": 3.43,
+    "eje_menor": 4.03,
+    "extremos_menor": [
+      [
+        71.04448,
+        -67.92402
+      ],
+      [
+        80.98315,
+        -69.7689
+      ]
+    ],
+    "nota": "major/minor swapped: the profile across the moment axis was longer"
+  },
+  {
+    "clave": "planck030",
+    "banda": "Radio (Planck 30 GHz)",
+    "unidad": "grados",
+    "eje_mayor_contraste5": 11.7,
+    "eje_mayor_contraste10": 7.1,
+    "eje_mayor_contraste20": 4.4,
+    "eje_mayor": 7.1,
+    "extremos_mayor": [
+      [
+        85.26776,
+        -66.11366
+      ],
+      [
+        76.33003,
+        -72.48038
+      ]
+    ],
+    "eje_menor_contraste5": 7.15,
+    "eje_menor_contraste10": 5.6,
+    "eje_menor_contraste20": 5.15,
+    "eje_menor": 5.6,
+    "extremos_menor": [
+      [
+        73.06193,
+        -68.13039
+      ],
+      [
+        87.27094,
+        -70.68725
+      ]
+    ],
+    "nota": "major/minor swapped: the profile across the moment axis was longer"
+  },
+  {
+    "clave": "fermi",
+    "banda": "Rayos gamma (Fermi 3–300 GeV, mapa crudo)",
+    "unidad": "grados",
+    "eje_mayor_contraste5": null,
+    "eje_mayor_contraste10": null,
+    "eje_mayor_contraste20": null,
+    "eje_mayor": null,
+    "extremos_mayor": [
+      [
+        81.40619,
+        -70.2244
+      ],
+      [
+        80.02766,
+        -68.90972
+      ]
+    ],
+    "eje_menor_contraste5": null,
+    "eje_menor_contraste10": null,
+    "eje_menor_contraste20": null,
+    "eje_menor": null,
+    "extremos_menor": [
+      [
+        80.0769,
+        -69.85817
+      ],
+      [
+        85.49619,
+        -69.08818
+      ]
+    ]
+  },
+  {
+    "clave": "30dor",
+    "banda": "30 Doradus (DSS2 roja)",
+    "unidad": "arcmin",
+    "eje_mayor_contraste5": 47.1,
+    "eje_mayor_contraste10": 37.5,
+    "eje_mayor_contraste20": 23.85,
+    "eje_mayor": 37.5,
+    "extremos_mayor": [
+      [
+        84.52507,
+        -69.44114
+      ],
+      [
+        84.74086,
+        -68.82089
+      ]
+    ],
+    "eje_menor_contraste5": 36.15,
+    "eje_menor_contraste10": 30.0,
+    "eje_menor_contraste20": 16.95,
+    "eje_menor": 30.0,
+    "extremos_menor": [
+      [
+        84.33048,
+        -69.07198
+      ],
+      [
+        85.72259,
+        -69.13029
+      ]
+    ]
+  }
+]

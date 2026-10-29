@@ -167,3 +167,33 @@ def test_server_exposes_the_seven_tools():
     names = {t.name for t in asyncio.run(mcp.list_tools())}
     assert names == {"simbad_query", "vizier_query", "get_survey_image", "measure_angular_size",
                      "plot_cmd", "aladin_send", "hips_search"}
+
+
+def test_aladin_send_skips_a_client_that_left_the_hub(monkeypatch):
+    class FakeClient:
+        def __init__(self, **kwargs):
+            pass
+
+        def connect(self):
+            pass
+
+        def disconnect(self):
+            pass
+
+        def get_subscribed_clients(self, mtype):
+            return {"c1": {}, "c2": {}}
+
+        def get_metadata(self, client_id):
+            if client_id == "c2":
+                raise samp.SAMPHubError("SampException: Client c2 is no longer registered")
+            return {"samp.name": "Aladin"}
+
+        def call_and_wait(self, client_id, message, timeout):
+            return {"samp.status": "samp.ok", "samp.result": {"script.result": ""}}
+
+    monkeypatch.setattr(samp, "SAMPIntegratedClient", FakeClient)
+    out = samp.send("zoom 10deg")
+    assert out["enviado"] is True
+    by_name = {r["destinatario"]: r for r in out["respuestas"]}
+    assert by_name["Aladin"]["confirmado"] is True
+    assert by_name["c2"]["confirmado"] is False and "left" in by_name["c2"]["mensaje"]

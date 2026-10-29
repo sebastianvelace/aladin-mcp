@@ -187,6 +187,43 @@ comprobación importante.
    `python resultados/scripts/comparar_medidas.py`: genera una tabla y una figura que comparan sus
    medidas con las automáticas y con SIMBAD.
 
+#### Medida tipo regla (hecha por Claude, no por una persona)
+
+Como comprobación independiente se imitó la medida con la regla de Aladin
+(`scripts/p4_medidas_perfiles.py`):
+1. En cada imagen se trazó una franja por cada eje y se calculó el perfil de brillo con la mediana a
+   través de la franja, para que las estrellas sueltas no cuenten. No hay suavizado 2D.
+2. El borde se puso donde el brillo baja al cielo vecino de ese lado más **un 10 % del contraste**
+   entre el pico y el cielo. Este criterio se fijó antes de mirar los resultados; también se midió
+   con 5 % y 20 % como sensibilidad.
+3. Las reglas se dibujaron en Aladin y se exportó su vista (`capturas/aladin_regla_*.png`).
+
+Perfiles con los bordes marcados: `punto4/medidas_perfiles.png`. Comparación:
+`punto4/comparacion_medidas.png` y `comparacion_medidas.csv`.
+
+| Banda | Regla (10 %) | Rango 5 %–20 % (eje mayor) | Automática 3σ | Diferencia | Referencia |
+|---|---|---|---|---|---|
+| Óptico (Mellinger) | **11.33° × 8.27°** | 7.5°–13.1° | 4.87° × 2.42° | +133 % | RC3: 10.76° × 9.16° |
+| Infrarrojo AKARI | **6.43° × 4.80°** | 5.2°–6.7° | 6.98° × 5.51° | −8 % | — |
+| Submm Planck 857 GHz | **6.53°** × (4.03°, no confiable) | 3.3°–6.8° | 6.14° × 4.54° | +6 % | — |
+| Radio Planck 30 GHz | **7.10° × 5.60°** | 4.4°–11.7° | 5.66° × 5.39° | +26 % | — |
+| Gamma Fermi (mapa crudo) | **no medible** | — | — | — | — |
+| 30 Doradus | **37.5′ × 30.0′** | 23.9′–47.1′ | 15.5′ × 12.4′ | +142 % | SIMBAD: 40′ × 25′ |
+
+Qué dice esta comparación:
+- En las bandas con bordes nítidos (AKARI, Planck 857) los dos métodos **coinciden dentro del 8 %**.
+- En el óptico y en 30 Doradus la regla da **más del doble** que el método automático y **coincide con
+  los catálogos**: RC3 para la LMC y SIMBAD para la nebulosa. El método automático a 3σ corta el halo
+  débil y extendido (el disco externo de la LMC, los filamentos de 30 Dor) y deja solo la barra o el
+  núcleo. En objetos así **subestima** el tamaño, aunque el suavizado tienda a ensanchar los bordes.
+- El eje menor de Planck 857 (4.03°) **no es confiable**. En ese lado, el cielo vecino incluye cirros
+  de polvo de la Vía Láctea, y el borde se cortó en un hueco interno de la LMC. Se ve en
+  `capturas/aladin_regla_planck857.png`.
+- En el mapa crudo de Fermi no hay borde: solo fotones sueltos. Es lo que concluiría una persona con
+  la regla. Para ver la LMC en rayos gamma hay que suavizar el mapa.
+- El rango 5 %–20 % muestra que **el criterio de "borde" pesa tanto como el instrumento**: en el
+  óptico, el eje mayor va de 7.5° a 13.1° solo cambiando el contraste elegido.
+
 ### 4.3 (b) Estrellas masivas de Bonanos et al. (2009) y diagrama V vs B−V
 
 #### El catálogo
@@ -217,7 +254,9 @@ con `BV_plausible = False` y se graficaron aparte (cruces grises); **no se borra
 - `punto4/Bonanos2009_LMC_V_BV.csv`: nombre, coordenadas, B, V, B−V, calidad y clase espectral.
 - `punto4/Bonanos2009_LMC_V_BV.xlsx`: hoja `datos` (1100 estrellas válidas), hoja
   `descartadas_BV_implausible` (35) y hoja `grafico` con un gráfico de dispersión de Excel y el
-  **eje V invertido**.
+  **eje V invertido**. El gráfico se verificó abriéndolo con LibreOffice (`capturas/excel_grafico_V_vs_BV.png`).
+  Esa verificación encontró y permitió corregir dos defectos de la primera versión: los marcadores no
+  tenían color y se dibujaban blancos sobre blanco, y el eje B−V quedaba arriba al invertir V.
 - `punto4/Bonanos2009_LMC_V_vs_BV.png`: diagrama V vs B−V coloreado por clase espectral, con las
   zonas caliente y fría señaladas.
 - `punto4/Bonanos2009_sobre_optico.png` y `Bonanos2009_sobre_AKARI.png`: las estrellas sobre las imágenes.
@@ -371,6 +410,11 @@ de su halo anaranjado, no una estrella aparte.
 
 Hoja de trabajo llena: `punto5/hoja_de_trabajo_llena.png` (brillo 1 arriba, 10 abajo; colores O → M).
 
+La misma estimación escrita sobre la foto de la hoja del taller (puntos azules):
+`punto5/hoja_de_trabajo_sobre_la_foto.jpg` y su ampliación `hoja_de_trabajo_sobre_la_foto_ampliada.png`.
+Las marcas grises que ya tenía la hoja impresa coinciden casi casilla por casilla con la estimación
+(B3, B5, A5, B6, A6, F1-7, F2-7), y las diferencias son de una casilla.
+
 **Cómo hacer las estimaciones a mano en su hoja:**
 1. Coloque una hoja transparente (o papel cebolla) sobre la foto. Marque la X en el centro del grupo
    formado por la estrella naranja y las estrellas azules más brillantes que la rodean.
@@ -430,35 +474,36 @@ corresponde a **unos 10–15 millones de años** y confirma la conclusión del e
 
 ---
 
-## Lista de verificación en Aladin Desktop (lo que usted debe hacer)
+## Capturas para el informe
 
-Capturas de pantalla sugeridas para el informe:
+Todas en `resultados/capturas/`. Las de Aladin se generaron con Aladin Desktop por SAMP: el servidor
+carga cada FITS, ajusta zoom y contraste, dibuja las reglas y exporta la vista
+(`scripts/p_capturas_aladin.py`).
 
-1. [ ] **LMC en cada banda**: abra los FITS de `resultados/punto4/` (File → Open). Si el CDS ya
-   responde, repita con los HiPS en color "DSS2 color" o "Mellinger color", "AKARI FIS Color",
-   "PLANCK R2 HFI color", "PLANCK R2 LFI" y "Fermi color".
-2. [ ] **Medida manual con la herramienta Dist** de la LMC en cada banda: una captura con la regla sobre
-   el eje mayor. Anote los valores en `punto4/medidas_manuales.csv` y ejecute `comparar_medidas.py`.
-3. [ ] **Óptico**: mida en `LMC_optico_Mellinger_luminancia_20deg.fits` y compare con SIMBAD (5.38°) y
-   RC3 (10.76°). ¿Hasta dónde llega el borde que usted ve?
-4. [ ] **30 Doradus**: zoom a ~1.5° y medida con Dist de la nebulosa completa, filamentos incluidos.
-   Compare con 40′ × 25′.
-5. [ ] **Catálogo de Bonanos sobre la imagen** (`Bonanos2009_LMC_para_Aladin.xml`): captura mostrando
-   dónde están las estrellas, sobre todo en la barra y en 30 Dor.
-6. [ ] **Gráfico V vs B−V** en la herramienta de gráficos de Aladin, si su versión la tiene. Si no,
-   use el Excel `Bonanos2009_LMC_V_BV.xlsx`.
-7. [ ] **NGC 4755** en "DSS2 color" con un campo de ~20′: compare con la foto del taller e identifique
-   DU Cru (la roja) y κ Cru.
-8. [ ] **SIMBAD**: captura de la página de NGC 4755 (coordenadas, tipo OpC, tamaño 10.3′).
-9. [ ] **Hoja de trabajo en papel**: hágala usted a mano con el método de 5.1 y compárela con
-   `hoja_de_trabajo_llena.png`. Es normal que difiera en una o dos casillas.
+| # | Contenido | Archivo |
+|---|---|---|
+| 1 | LMC en óptico, con reglas | `aladin_regla_optico.png` |
+| 2 | LMC en infrarrojo (AKARI), con reglas | `aladin_regla_akari.png` |
+| 3 | LMC en submilimétrico (Planck 857 GHz), con reglas | `aladin_regla_planck857.png` |
+| 4 | LMC en radio (Planck 30 GHz), con reglas | `aladin_regla_planck030.png` |
+| 5 | LMC en rayos gamma (Fermi, mapa crudo): sin borde medible | `aladin_regla_fermi.png` |
+| 6 | 30 Doradus con reglas | `aladin_regla_30dor.png` |
+| 7 | LMC en color: Mellinger RGB armado en Aladin | `aladin_LMC_Mellinger_RGB.png` |
+| 8 | Estrellas de Bonanos et al. 2009 sobre la LMC | `aladin_Bonanos2009_sobre_LMC.png` |
+| 9 | NGC 4755 con sus estrellas brillantes rotuladas | `aladin_NGC4755.png` |
+| 10 | Ficha de NGC 4755 en SIMBAD (espejo de Harvard) | `simbad_NGC4755.jpg` |
+| 11 | Gráfico V vs B−V del Excel, renderizado con LibreOffice | `excel_grafico_V_vs_BV.png` |
+
+Hoja de trabajo "en papel": `punto5/hoja_de_trabajo_sobre_la_foto.jpg`.
 
 ## Qué no se pudo hacer o verificar
 
 - Los HiPS del CDS (DSS2 color, Mellinger color, AKARI color, Planck color, Fermi color) no estuvieron
   disponibles: se usaron las versiones de NASA SkyView.
 - El diámetro gamma (Fermi) es una cota superior aproximada, porque el suavizado necesario para ver la
-  LMC ensancha la mancha.
+  LMC ensancha la mancha; en el mapa crudo no hay borde medible.
+- Las medidas "a mano" las hizo Claude imitando la regla de Aladin, no una persona.
 - VizieR no respondió: el catálogo de Bonanos se tomó del artículo original. Es la misma tabla, pero no
   se pudo comparar fila por fila con la versión de VizieR.
-- Los comandos enviados a Aladin por SAMP no devuelven confirmación de que se ejecutaron.
+- Los comandos de Aladin que necesitan al CDS (cargar surveys o catálogos remotos, resolver nombres)
+  no se pudieron usar; todo se hizo con archivos locales.
