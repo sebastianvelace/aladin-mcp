@@ -111,7 +111,9 @@ no seguía a la galaxia: esa medida se descartó. Se probaron dos cosas:
 
 Que la mancha aparezca en tres bandas independientes indica que es emisión real. Aun así, el diámetro
 gamma es una **cota superior aproximada**: el suavizado lo ensancha (σ = 0.5° equivale a un ancho a
-media altura de 1.2°).
+media altura de 1.2°). En una prueba con un disco artificial de tamaño conocido, el suavizado agrandó
+el radio medido entre 2 y 3 veces σ. Para Fermi eso significa que el diámetro puede estar inflado
+**hasta ~2.5°**: el tamaño gamma real de la LMC podría ser bastante menor que 3.9°.
 
 **Nebulosa de la Tarántula (30 Doradus)**, imagen DSS2 roja de 1.5°:
 
@@ -163,6 +165,13 @@ Porque **cada banda ve un componente distinto de la galaxia**:
 
 Conclusión: **no existe un único "diámetro de la LMC"**. Depende de qué componente se mire y de dónde se
 corte (el umbral).
+
+**Sesgo del suavizado.** El método suaviza antes de aplicar el umbral, y eso desplaza el borde hacia
+afuera. Con un disco artificial de tamaño conocido, sin suavizado el método recupera el diámetro
+exacto, y con suavizado el radio crece entre 2 y 3 veces σ. En las bandas medidas con el suavizado
+por defecto (σ = 0.2°) el diámetro podría estar inflado hasta ~1°. El efecto real debería ser menor,
+porque el borde de la LMC es gradual y no abrupto. Por eso la medida manual en Aladin es una
+comprobación importante.
 
 #### Procedimiento manual en Aladin (para verificar)
 1. Cargue la imagen (survey o FITS) y centre en la LMC.

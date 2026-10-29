@@ -12,7 +12,11 @@ dependencies = [
     "pandas",
     "scipy",
     "requests",
+    "pyvo>=1.5",
 ]
+
+[project.optional-dependencies]
+test = ["pytest>=8"]
 
 [project.scripts]
 aladin-mcp = "aladin_mcp.server:main"
@@ -23,3 +27,7 @@ build-backend = "setuptools.build_meta"
 
 [tool.setuptools]
 packages = ["aladin_mcp"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["tests"]

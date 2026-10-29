@@ -6,3 +6,4 @@ matplotlib
 pandas
 scipy
 requests
+pyvo>=1.5

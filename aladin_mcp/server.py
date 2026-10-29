@@ -111,10 +111,13 @@ async def aladin_send(
     comandos: Annotated[str, Field(description="Aladin script, commands separated by ';' or newlines. "
                                    "Examples: 'get hips(CDS/P/DSS2/color); LMC; zoom 20deg', "
                                    "'get VizieR(J/AJ/138/1003) LMC 5deg', 'NGC 4755; zoom 30arcmin'.")],
+    espera_segundos: Annotated[int, Field(ge=1, le=300, description="Seconds to wait for Aladin's confirmation.")] = 20,
 ) -> str:
-    """Send script commands to a running Aladin Desktop via SAMP (mtype script.aladin.send).
+    """Send script commands to a running Aladin Desktop via SAMP (mtype script.aladin.send) and
+    wait for Aladin's confirmation. Local commands (zoom, grid) confirm at once; loading surveys,
+    catalogues or resolving names may exceed the wait while Aladin keeps working.
     If no SAMP hub is active, explains how to enable it in Aladin."""
-    return await _call(samp.send, comandos)
+    return await _call(samp.send, comandos, espera_segundos)
 
 
 @mcp.tool(annotations=READ_ONLY_NET)

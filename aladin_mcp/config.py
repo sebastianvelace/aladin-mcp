@@ -39,8 +39,15 @@ REGTAP_URL = "https://dc.g-vo.org/tap/sync"
 @dataclass(frozen=True)
 class Survey:
     hips_id: str
-    skyview: str  # NASA SkyView fallback survey name
+    skyview: tuple[str, ...]  # NASA SkyView fallback; three names = R, G, B colour composite
     band: str
+    # Fallback for fields of at least WIDE_FIELD_DEG, when the default one is unsuitable there.
+    skyview_wide: tuple[str, ...] | None = None
+
+
+# SkyView's DSS2 mosaics of large fields show steps between photographic plates, which break
+# size measurements; Mellinger (~36"/px, seamless, colour) is used from this size up.
+WIDE_FIELD_DEG = 2.0
 
 
 # Each hips_id was verified on 2026-10-28:
@@ -50,8 +57,9 @@ class Survey:
 #   and ivo://cds/p/planck/r2/hfi/color (the registry lowercases IDs; the
 #   casing below is the CDS convention). Use the hips_search tool to recheck.
 SURVEYS = {
-    "DSS": Survey("CDS/P/DSS2/color", "DSS2 Red", "optical"),
-    "AKARI": Survey("CDS/P/AKARI/FIS/Color", "AKARI WIDE-L", "far infrared (65-140 um)"),
-    "PLANCK": Survey("CDS/P/PLANCK/R2/HFI/color", "Planck 857 I", "submm/radio (353-857 GHz)"),
-    "FERMI": Survey("CDS/P/Fermi/color", "Fermi 5", "gamma rays (0.3-300 GeV)"),
+    "DSS": Survey("CDS/P/DSS2/color", ("DSS2 Red",), "optical",
+                  skyview_wide=("Mellinger Red", "Mellinger Green", "Mellinger Blue")),
+    "AKARI": Survey("CDS/P/AKARI/FIS/Color", ("AKARI WIDE-L",), "far infrared (65-140 um)"),
+    "PLANCK": Survey("CDS/P/PLANCK/R2/HFI/color", ("Planck 857 I",), "submm, dust (353-857 GHz)"),
+    "FERMI": Survey("CDS/P/Fermi/color", ("Fermi 5",), "gamma rays (0.3-300 GeV; fallback 3-300 GeV)"),
 }

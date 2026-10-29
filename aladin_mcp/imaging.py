@@ -15,7 +15,7 @@ from astropy.wcs.utils import proj_plane_pixel_scales
 from scipy import ndimage
 
 from .cds import resolve_target
-from .config import HIPS2FITS_SERVERS, OUTPUT_DIR, SURVEYS, TIMEOUT
+from .config import HIPS2FITS_SERVERS, OUTPUT_DIR, SURVEYS, TIMEOUT, WIDE_FIELD_DEG
 from .mirrors import MirrorPool, describe_error
 
 hips2fits_pool = MirrorPool("hips2fits", HIPS2FITS_SERVERS)
@@ -33,6 +33,32 @@ def _survey_for(hips: str):
         if survey.hips_id.lower() == hips.strip().lower():
             return survey
     return None
+
+
+def skyview_surveys(survey, fov_deg: float) -> tuple[str, ...]:
+    """SkyView fallback for a survey alias, switching to the wide-field one for large fields."""
+    if survey.skyview_wide and fov_deg >= WIDE_FIELD_DEG:
+        return survey.skyview_wide
+    return survey.skyview
+
+
+def clean_header(header: fits.Header) -> fits.Header:
+    """Copy a header replacing non-printable characters in commentary cards.
+
+    Some SkyView headers (Mellinger) carry a tab in a COMMENT card, which is invalid FITS and
+    makes astropy refuse to write the file even with output_verify='fix'.
+    """
+    out = fits.Header()
+    for card in header.cards:
+        if card.keyword in ("COMMENT", "HISTORY", ""):
+            text = "".join(c if 32 <= ord(c) < 127 else " " for c in str(card.value))
+            if card.keyword == "HISTORY":
+                out.add_history(text)
+            else:
+                out.add_comment(text)
+        else:
+            out.append(card)
+    return out
 
 
 def _image_data(hdul: fits.HDUList):
@@ -70,17 +96,23 @@ def fetch_image(target: str, hips: str, fov_deg: float, width_px: int, height_px
 
     if hdul is None and survey is not None:
         # SkyView (NASA) serves the same surveys from independent infrastructure.
+        names = skyview_surveys(survey, fov_deg)
         try:
             from astroquery.skyview import SkyView
             SkyView.TIMEOUT = max(TIMEOUT, 60)
             images = SkyView.get_images(
-                position=f"{coord.ra.deg} {coord.dec.deg}", survey=[survey.skyview],
+                position=f"{coord.ra.deg} {coord.dec.deg}", survey=list(names),
                 coordinates="J2000", projection=projection.capitalize(),
                 pixels=f"{width_px},{height_px}", width=fov_deg * u.deg,
-                deedger="skyview.process.Deedger",  # match plate backgrounds
                 height=fov_deg * height_px / width_px * u.deg)
-            hdul = images[0]
-            used = survey.skyview
+            planes = [_image_data(h) for h in images]
+            if len(planes) == 1:
+                hdul = fits.HDUList([planes[0]])
+                used = names[0]
+            else:  # R, G, B channels -> one colour cube
+                cube = np.stack([p.data.astype(np.float32) for p in planes])
+                hdul = fits.HDUList([fits.PrimaryHDU(cube, planes[0].header)])
+                used = names[0].rsplit(" ", 1)[0] + " RGB"
             source = f"NASA SkyView fallback, survey='{used}' (hips2fits failed)"
         except Exception as exc:
             errors.append(f"SkyView: {describe_error(exc)}")
@@ -90,16 +122,18 @@ def fetch_image(target: str, hips: str, fov_deg: float, width_px: int, height_px
 
     out_dir = OUTPUT_DIR / "images"
     out_dir.mkdir(parents=True, exist_ok=True)
-    base = out_dir / f"{_slug(target)}_{_slug(used)}_{fov_deg:g}deg"
-    fits_path = base.with_suffix(".fits")
+    # Build names by concatenation: with_suffix() would treat ".33deg" in "0.33deg" as a suffix.
+    stem = f"{_slug(target)}_{_slug(used)}_{fov_deg:g}deg"
+    fits_path = out_dir / f"{stem}.fits"
     hdu = _image_data(hdul)
-    hdu.header["HISTORY"] = f"aladin-mcp source: {source}"
-    fits.HDUList([fits.PrimaryHDU(hdu.data, hdu.header)]).writeto(fits_path, overwrite=True)
+    header = clean_header(hdu.header)
+    header["HISTORY"] = f"aladin-mcp source: {source}"
+    fits.PrimaryHDU(hdu.data, header).writeto(fits_path, overwrite=True)
 
     wcs = WCS(hdu.header).celestial
     scale = proj_plane_pixel_scales(wcs).mean() * 3600
     title = f"{target} - {used}" + (f" ({survey.band})" if survey else "")
-    png_path = render_png(hdu.data, wcs, title, base.with_suffix(".png"))
+    png_path = render_png(hdu.data, wcs, title, out_dir / f"{stem}.png")
     return {
         "fits": str(fits_path), "png": str(png_path), "fuente": source,
         "centro": {"ra_deg": round(coord.ra.deg, 6), "dec_deg": round(coord.dec.deg, 6),
@@ -153,7 +187,9 @@ LIMITATIONS = (
     "Approximate, threshold-dependent estimate: a lower umbral gives a larger diameter. "
     "If the object fills the frame the 'background' includes its own emission and the size is "
     "underestimated: use a FOV 2-3x the expected size. A region touching the edge is only a "
-    "lower limit. Low-resolution surveys (Planck ~5', Fermi ~1 deg PSF) blur and enlarge "
+    "lower limit. The smoothing itself widens the contour: for a bright source with a sharp "
+    "edge the radius grows by ~2-3 smoothing sigmas (about 4-5 sigmas in diameter); pass "
+    "suavizado_px=0 for unsmoothed images. Low-resolution surveys (Planck ~5', Fermi ~1 deg PSF) blur and enlarge "
     "sources, and in Planck/Fermi the Milky Way foreground can merge with the target. "
     "Different wavelengths trace different components (stars, dust, gas, cosmic rays), so "
     "the 'diameter' is not expected to agree between surveys."

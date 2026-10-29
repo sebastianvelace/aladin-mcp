@@ -23,10 +23,17 @@ de astropy, astroquery y matplotlib se guardan en `.cache/` y `.config/` dentro 
 
 | Alias | ID HiPS | Banda | Respaldo en NASA SkyView |
 |---|---|---|---|
-| `DSS` | `CDS/P/DSS2/color` | óptico | `DSS2 Red` |
+| `DSS` | `CDS/P/DSS2/color` | óptico | `DSS2 Red` si el campo es menor de 2°; `Mellinger Red/Green/Blue` (imagen en color) desde 2° |
 | `AKARI` | `CDS/P/AKARI/FIS/Color` | infrarrojo lejano (65–140 µm) | `AKARI WIDE-L` |
-| `PLANCK` | `CDS/P/PLANCK/R2/HFI/color` | submilimétrico/radio (353–857 GHz) | `Planck 857 I` |
-| `FERMI` | `CDS/P/Fermi/color` | rayos gamma (0.3–300 GeV) | `Fermi 5` |
+| `PLANCK` | `CDS/P/PLANCK/R2/HFI/color` | submilimétrico, polvo (353–857 GHz) | `Planck 857 I` |
+| `FERMI` | `CDS/P/Fermi/color` | rayos gamma (0.3–300 GeV) | `Fermi 5` (3–300 GeV) |
+
+¿Por qué el respaldo óptico cambia con el campo? SkyView arma los campos grandes de DSS2 con
+varias placas fotográficas sin igualar su fondo, y los escalones entre placas arruinan la medición
+del tamaño. Mellinger es un mosaico de todo el cielo, continuo y en color, pero con píxeles de
+~36″: sirve para objetos de grados como la LMC y no para cúmulos de minutos de arco como NGC 4755.
+Para radio de verdad use el ID de Planck LFI (por ejemplo, `Planck 030 I` en SkyView): 857 GHz es
+emisión de polvo.
 
 Cómo se verificaron (28/10/2026, con el MocServer del CDS sin responder):
 - `CDS/P/DSS2/color` y `CDS/P/Fermi/color`: `creator_did` leído del archivo `properties` del
@@ -64,8 +71,8 @@ Comprobación rápida (debe listar las 7 herramientas):
 Notas de versiones:
 - `mcp` 2.x renombró `FastMCP` a `MCPServer` (`from mcp.server.mcpserver import MCPServer`).
   Es la misma API de decoradores `@mcp.tool()`.
-- astropy 8 marca `astropy.samp` como obsoleto (el reemplazo es `pyvo.samp`). Sigue
-  funcionando; el aviso se silencia.
+- astropy 8 marca `astropy.samp` como obsoleto; el servidor usa su reemplazo, `pyvo.samp`,
+  que tiene la misma API.
 - `scipy` se agregó a las dependencias pedidas: lo usa `measure_angular_size` (suavizado y
   regiones conectadas).
 
@@ -86,7 +93,16 @@ porque contiene rutas propias de cada computadora.
 
 ### Claude Desktop
 
-Agregue esto en `~/.config/Claude/claude_desktop_config.json` (Linux),
+Primero **cierre Claude Desktop por completo**. Mientras está abierta, la app reescribe su archivo
+de configuración con lo que tiene en memoria y puede borrar una entrada agregada desde afuera. Luego
+ejecute, desde la raíz del repositorio:
+
+```bash
+.venv/bin/python scripts/registrar_claude_desktop.py
+```
+
+El script detecta el sistema operativo y solo agrega o actualiza `mcpServers.aladin`: conserva las
+demás claves y deja una copia `.json.bak`. Si prefiere hacerlo a mano, agregue esto en `~/.config/Claude/claude_desktop_config.json` (Linux),
 `~/Library/Application Support/Claude/claude_desktop_config.json` (macOS) o
 `%APPDATA%\Claude\claude_desktop_config.json` (Windows), y reinicie Claude Desktop:
 
@@ -111,8 +127,11 @@ Agregue esto en `~/.config/Claude/claude_desktop_config.json` (Linux),
    SAMP abajo en la ventana se pone verde al conectarse.
 4. Alternativa: abra TOPCAT (que también trae un hub) y conecte Aladin a ese hub.
 
-`aladin_send` no recibe confirmación de que Aladin ejecutó el script (usa una notificación
-SAMP): mire la ventana de Aladin, y si un comando falla aparece en su consola.
+`aladin_send` espera la respuesta de Aladin (por defecto hasta 20 s, parámetro
+`espera_segundos`) e informa `confirmado: true` cuando Aladin terminó de ejecutar el script. Los
+comandos locales (`zoom`, `grid on`) confirman al instante. Los que cargan surveys o catálogos, o
+resuelven nombres de objetos, dependen de los servidores del CDS y pueden superar la espera. En ese
+caso la respuesta lo dice y Aladin sigue trabajando: mire su ventana.
 
 ## Ejemplos para el taller
 
@@ -198,6 +217,9 @@ Método:
 Limitaciones:
 - **El resultado depende del umbral**: bajarlo agranda el diámetro. No hay un "diámetro
   verdadero"; es una medida operativa.
+- **El suavizado ensancha el contorno**: en una fuente brillante de borde abrupto, el radio crece
+  entre 2 y 3 veces el σ del suavizado (verificado con un disco artificial en los tests). Con
+  `suavizado_px=0` no se suaviza.
 - Si el objeto llena el campo, el "fondo" incluye la propia galaxia y el tamaño sale menor.
   Use un campo 2–3 veces mayor que el tamaño esperado.
 - Si la región toca el borde, el número es solo un **límite inferior** (la herramienta avisa).
@@ -263,4 +285,23 @@ aladin_mcp/
   plotting.py   # diagrama color-magnitud
   samp.py       # envío de scripts a Aladin
   server.py     # definición de las herramientas MCP
+scripts/
+  registrar_claude_desktop.py  # registra el servidor en Claude Desktop
+tests/          # tests sin red (funcionan aunque el CDS esté caído)
+resultados/     # resultados del taller (puntos 4 y 5) y sus scripts
 ```
+
+## Tests
+
+```bash
+uv pip install --python .venv/bin/python -e '.[test]'
+```
+
+```bash
+.venv/bin/python -m pytest -q
+```
+
+Los tests no usan la red. Cubren el reintento por espejos, la lectura de coordenadas, la elección del
+respaldo de SkyView, las cabeceras FITS con caracteres inválidos, los nombres de archivo con campos
+de visión fraccionarios, la medición de tamaño sobre un disco artificial de tamaño conocido (incluido
+el ensanchamiento que produce el suavizado), el diagrama color-magnitud y el mensaje de SAMP sin hub.
