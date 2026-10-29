@@ -43,7 +43,7 @@ También podés pasar cualquier otro ID HiPS directamente en `hips_id`.
 Probado en Ubuntu 24.04 con Python 3.12 y [uv](https://docs.astral.sh/uv/).
 
 ```bash
-cd ~/Aladinmcp
+cd <RUTA_DEL_REPO>
 uv venv .venv --python 3.12
 uv pip install --python .venv/bin/python -r requirements.txt
 ```
@@ -74,11 +74,15 @@ Notas de versiones:
 ### Claude Code
 
 ```bash
-claude mcp add aladin --scope project -- /home/sebasvelace/Aladinmcp/.venv/bin/python -m aladin_mcp.server
+claude mcp add aladin --scope project -- <RUTA_DEL_REPO>/.venv/bin/python -m aladin_mcp.server
 ```
 
 Con `--scope project` la configuración queda en `.mcp.json` dentro de esta carpeta; Claude
 Code pide aprobarla la primera vez que abrís el proyecto. Verificá con `claude mcp list`.
+
+Alternativa sin el comando: copie `.mcp.json.example` como `.mcp.json` y reemplace
+`<RUTA_DEL_REPO>` por la ruta absoluta del repositorio en su máquina. `.mcp.json` no se versiona
+porque contiene rutas propias de cada computadora.
 
 ### Claude Desktop
 
@@ -90,9 +94,9 @@ Agregá esto en `~/.config/Claude/claude_desktop_config.json` (Linux),
 {
   "mcpServers": {
     "aladin": {
-      "command": "/home/sebasvelace/Aladinmcp/.venv/bin/python",
+      "command": "<RUTA_DEL_REPO>/.venv/bin/python",
       "args": ["-m", "aladin_mcp.server"],
-      "cwd": "/home/sebasvelace/Aladinmcp"
+      "cwd": "<RUTA_DEL_REPO>"
     }
   }
 }
@@ -169,9 +173,9 @@ estrellas.
 Claude debe elegir un catálogo fotométrico del cúmulo (por ejemplo, buscándolo en VizieR por
 nombre del objeto), descargarlo con `vizier_query` y graficarlo con `plot_cmd`. Para estimar la
 edad se mira el punto de desvío (*turn-off*) de la secuencia principal: en un cúmulo joven
-como NGC 4755 (unos 10–15 millones de años según la literatura) las estrellas más brillantes y
-azules todavía están en la secuencia principal o recién saliendo de ella, junto a algunas
-supergigantes rojas, como κ Crucis.
+como NGC 4755 (10–16 millones de años según la literatura) el punto de giro está en lo más alto
+del diagrama. Las estrellas más brillantes son supergigantes azules, como κ Crucis (B5 I), que
+recién salen de la secuencia principal, y hay una sola supergigante roja, DU Cru (M2 Iab).
 
 > Centrá Aladin en el cúmulo.
 

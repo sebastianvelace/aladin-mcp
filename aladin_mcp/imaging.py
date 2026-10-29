@@ -161,7 +161,9 @@ LIMITATIONS = (
 
 
 def measure_size(fits_path: str, umbral: float, suavizado_px: float | None,
-                 distancia_kpc: float | None) -> dict:
+                 distancia_kpc: float | None, return_arrays: bool = False) -> dict:
+    """Measure the main emission. With return_arrays=True no PNG is written and the result
+    carries the image, chosen region and WCS (keys _data, _region, _wcs) for custom figures."""
     path = Path(fits_path).expanduser()
     if not path.exists():
         raise FileNotFoundError(f"FITS not found: {path}")
@@ -213,9 +215,14 @@ def measure_size(fits_path: str, umbral: float, suavizado_px: float | None,
     if area_px / region.size > 0.6:
         warnings_.append("The region covers >60% of the frame; the background estimate is "
                          "probably contaminated. Use a larger FOV.")
+    if how.startswith("largest"):
+        warnings_.append("The image centre is below the threshold, so the largest region was "
+                         "used: it may be a different source. Check the diagnostic PNG.")
 
-    png = path.with_name(path.stem + f"_medida_u{umbral:g}.png")
-    render_png(raw, wcs, f"{path.stem}: threshold = bkg + {umbral:g} sigma", png, region)
+    png = None
+    if not return_arrays:
+        png = path.with_name(path.stem + f"_medida_u{umbral:g}.png")
+        render_png(raw, wcs, f"{path.stem}: threshold = bkg + {umbral:g} sigma", png, region)
 
     result = {
         "diametro_equivalente_deg": round(float(equiv_deg), 3),
@@ -228,11 +235,13 @@ def measure_size(fits_path: str, umbral: float, suavizado_px: float | None,
         "fondo": float(background), "ruido": float(noise), "umbral_valor": float(threshold),
         "suavizado_px": sigma_px,
         "escala_arcsec_por_pixel": round(scale_deg * 3600, 3),
-        "png_diagnostico": str(png),
+        "png_diagnostico": str(png) if png else None,
         "avisos": warnings_ or None,
         "metodo": METHOD,
         "limitaciones": LIMITATIONS,
     }
     if distancia_kpc:
         result["diametro_fisico_kpc"] = round(float(distancia_kpc * np.radians(equiv_deg)), 2)
+    if return_arrays:
+        result.update({"_data": raw, "_region": region, "_wcs": wcs})
     return result

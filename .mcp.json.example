@@ -2,7 +2,7 @@
   "mcpServers": {
     "aladin": {
       "type": "stdio",
-      "command": "/home/sebasvelace/Aladinmcp/.venv/bin/python",
+      "command": "<RUTA_DEL_REPO>/.venv/bin/python",
       "args": [
         "-m",
         "aladin_mcp.server"
