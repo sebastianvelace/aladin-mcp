@@ -145,20 +145,21 @@ con las llamadas que deberían resultar.
 `simbad_query("LMC")` → galaxia, V = 0.4, eje mayor 322.8′ × 274.8′, distancias publicadas
 de unos 50 kpc.
 
-> Descarga imágenes de la LMC de 16 grados en DSS, AKARI, PLANCK y FERMI, y mide el diámetro
+> Descarga imágenes de la LMC de 20 grados en DSS, AKARI, PLANCK y FERMI, y mide el diámetro
 > angular en cada una suponiendo 50 kpc.
 
 ```
-get_survey_image("LMC", "DSS",    fov_grados=16, ancho_px=800)
-get_survey_image("LMC", "AKARI",  fov_grados=16, ancho_px=600)
-get_survey_image("LMC", "PLANCK", fov_grados=16, ancho_px=600)
+get_survey_image("LMC", "DSS",    fov_grados=20, ancho_px=600)
+get_survey_image("LMC", "AKARI",  fov_grados=20, ancho_px=600)
+get_survey_image("LMC", "PLANCK", fov_grados=20, ancho_px=600)
 get_survey_image("LMC", "FERMI",  fov_grados=20, ancho_px=400)
 measure_angular_size("output/images/<archivo>.fits", umbral=3, distancia_kpc=50)
 ```
 
-Prueba real con AKARI (SkyView, 16°, 400 px): diámetro equivalente ≈ 5.9° (ejes de 6.9° × 5.4°),
-unos 5.1 kpc a 50 kpc. Pruebe también `umbral=2` y `umbral=5` para ver cuánto depende el
-resultado del umbral.
+Con el CDS caído, el alias `DSS` usa Mellinger a 20°. Resultados reales a 3σ (diámetro equivalente):
+óptico 3.25°, AKARI 5.98° (5.2 kpc), Planck 857 GHz 4.51°. Para Fermi conviene suavizar con
+`suavizado_px` equivalente a 0.5°. Pruebe también `umbral=2` y `umbral=5` para ver cuánto depende
+el resultado del umbral. El detalle completo está en `resultados/metodologia_puntos_4_5.md`.
 
 > Carga el catálogo J/AJ/138/1003 con todas sus filas y grafica V contra B-V.
 
@@ -288,7 +289,17 @@ aladin_mcp/
 scripts/
   registrar_claude_desktop.py  # registra el servidor en Claude Desktop
 tests/          # tests sin red (funcionan aunque el CDS esté caído)
-resultados/     # resultados del taller (puntos 4 y 5) y sus scripts
+resultados/
+  punto4/       # imágenes FITS/PNG de la LMC, medidas, catálogo de Bonanos (CSV, Excel, VOTable)
+  punto5/       # análisis de la foto de NGC 4755, hoja de trabajo, datos de SIMBAD y Gaia
+  capturas/     # vistas exportadas de Aladin, ficha de SIMBAD y gráfico de Excel
+  scripts/      # scripts que regeneran todos los resultados
+  metodologia_puntos_4_5.md   # paso a paso de los puntos 4 y 5: datos, parámetros y cuentas
+  respuestas_puntos_1_3.md    # cálculos de los puntos 1 a 3
+latex/
+  taller_entrega_final.tex    # documento entregado (y su PDF compilado)
+  fotos/                      # hojas resueltas a mano
+.github/workflows/tests.yml   # corre los tests en cada push
 ```
 
 ## Informe del taller en LaTeX
