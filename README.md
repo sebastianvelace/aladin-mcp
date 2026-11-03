@@ -293,15 +293,13 @@ resultados/     # resultados del taller (puntos 4 y 5) y sus scripts
 
 ## Informe del taller en LaTeX
 
-`latex/taller_magnitudes.tex` redacta los puntos 1 a 5 del taller con las tablas y figuras de
-`resultados/`; `latex/taller_magnitudes.pdf` es la versión compilada. Para recompilarlo con
-[Tectonic](https://tectonic-typesetting.github.io/):
+`latex/taller_entrega_final.tex` es la versión entregada del taller (puntos 1 a 5): incluye las hojas
+resueltas a mano (`latex/fotos/`) y las tablas y figuras de `resultados/`. `latex/taller_entrega_final.pdf`
+es la versión compilada. Para recompilarla con [Tectonic](https://tectonic-typesetting.github.io/):
 
 ```bash
-cd latex && tectonic taller_magnitudes.tex
+cd latex && tectonic taller_entrega_final.tex
 ```
-
-Antes de entregarlo, reemplace el nombre del estudiante en la macro `\autor` al comienzo del archivo.
 
 ## Tests
 
