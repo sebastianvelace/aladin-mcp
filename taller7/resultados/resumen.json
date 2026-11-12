@@ -1,0 +1,21 @@
+{
+  "n_images": 26,
+  "n_detections": 173,
+  "n_tracks_used": 18,
+  "earth_orbital_rate_deg_day": 1.0150672223667527,
+  "mean_synodic_rate": 13.28672101009897,
+  "mean_synodic_rate_err": 0.01565345072389225,
+  "synodic_rate_scatter": 0.5272711429876049,
+  "mean_synodic_period": 27.094721092312483,
+  "mean_synodic_period_err_stat": 0.031921034631023554,
+  "mean_synodic_period_err_scatter": 0.25343384922960316,
+  "mean_sidereal_rate": 14.301788232465723,
+  "mean_sidereal_period": 25.171677425818913,
+  "diffrot_A_sidereal": 14.43160666316619,
+  "diffrot_B_sidereal": -1.7962388279230392,
+  "equator_sidereal_period_fit": 24.945247497551918,
+  "b0_range": [
+    -1.5704587213140617,
+    1.6065303578629437
+  ]
+}
